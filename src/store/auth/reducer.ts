@@ -11,10 +11,11 @@ export const initState: AuthState = {
 
 export const authReducer = (state = initState, action: AuthActions) => {
     switch (action.type) {
-        case getType(auth.changeAuth):
-            return Object.assign({}, state, {
-                isLoggedIn: action.payload
-            })
+        case getType(auth.authUser.request):
+            return state;
+        // return Object.assign({}, state, {
+        //     authenticated: action.payload.email
+        // })
         default:
             return state;
     }

@@ -8,7 +8,7 @@ import reduxThunk from "redux-thunk";
 
 import App from "./components/App";
 import Welcome from "./components/Welcome";
-import { Signup } from "./components/auth/Signup";
+import Signup from "./components/auth/Signup";
 
 const store = createStore(
     reducers,

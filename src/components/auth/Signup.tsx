@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { reduxForm, Field, InjectedFormProps } from "redux-form";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { ActionType } from 'typesafe-actions';
 
-class SignupBase extends Component<InjectedFormProps> {
+import * as auth from '../auth/Signup';
+export type AuthActions = ActionType<typeof auth>;
+
+class Signup extends Component<InjectedFormProps> {
 
     onSubmit = (formProps: any) => {
         console.log(formProps)
@@ -35,4 +41,7 @@ class SignupBase extends Component<InjectedFormProps> {
     }
 }
 
-export const Signup = reduxForm({ form: 'signup' })(SignupBase);
+export default compose(
+    connect(null, auth),
+    reduxForm({ form: 'signup' })
+)(Signup);
