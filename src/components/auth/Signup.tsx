@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { reduxForm, Field, InjectedFormProps } from "redux-form";
 
 class SignupBase extends Component<InjectedFormProps> {
+
+    onSubmit = (formProps: any) => {
+        console.log(formProps)
+    };
+
     render() {
+        const { handleSubmit } = this.props;
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit)}>
                 <fieldset>
                     <label>Email</label>
                     <Field
@@ -23,6 +29,7 @@ class SignupBase extends Component<InjectedFormProps> {
                         autoComplete="none"
                     />
                 </fieldset>
+                <button>Sign Up!</button>
             </form>
         )
     }
