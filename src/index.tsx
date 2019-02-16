@@ -20,8 +20,8 @@ ReactDOM.render(
     <Provider store={createStore(reducers, {})}>
         <BrowserRouter>
             <App>
-                <Route path="/" exact component={Welcome} />
-                <Route path="/signup" exact component={Signup} />
+                <Route path="/" exact component={Welcome as any} />
+                <Route path="/signup" exact component={Signup as any} />
             </App>
         </BrowserRouter>
     </Provider>,

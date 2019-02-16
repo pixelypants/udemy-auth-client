@@ -11,7 +11,7 @@ export const initState: AuthState = {
 
 export const authReducer = (state = initState, action: AuthActions) => {
     switch (action.type) {
-        case getType(auth.authUser.request):
+        case getType(auth.signupAction.request):
             return state;
         // return Object.assign({}, state, {
         //     authenticated: action.payload.email
