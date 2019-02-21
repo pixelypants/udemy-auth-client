@@ -2,22 +2,22 @@ import React, { Component } from "react";
 import { reduxForm, Field, InjectedFormProps } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { ActionType } from 'typesafe-actions';
-
+import { RouteComponentProps } from "react-router-dom";
 import * as actions from '../../store/auth/actions';
 
 const dispatchProps = {
     signup: actions.signup
 }
+export interface SignupProps {
+    errorMessage: string;
+}
 
-// https://codesandbox.io/s/github/piotrwitek/typesafe-actions/tree/master/codesandbox
-
-class Signup extends Component<InjectedFormProps & typeof dispatchProps> {
+class Signup extends Component<InjectedFormProps & typeof dispatchProps & SignupProps & RouteComponentProps> {
 
     onSubmit = (formProps) => {
-        this.props.signup(formProps);
-        debugger;
-        console.log('');
+        this.props.signup(formProps, () => {
+            this.props.history.push('/feature');
+        });
     };
 
     render() {
@@ -42,13 +42,20 @@ class Signup extends Component<InjectedFormProps & typeof dispatchProps> {
                         autoComplete="none"
                     />
                 </fieldset>
+                <div>
+                    {this.props.errorMessage}
+                </div>
                 <button>Sign Up!</button>
             </form>
         )
     }
 }
 
+function mapStateToProps(state) {
+    return { errorMessage: state.auth.errorMessage }
+}
+
 export default compose(
-    connect(null, dispatchProps),
+    connect(mapStateToProps, dispatchProps),
     reduxForm({ form: 'signup' })
 )(Signup);
