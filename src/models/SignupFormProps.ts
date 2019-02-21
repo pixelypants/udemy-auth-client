@@ -1,4 +1,4 @@
-export interface SignupFormProps {
+export default interface SignupFormProps {
     email: string;
     password: string;
 };

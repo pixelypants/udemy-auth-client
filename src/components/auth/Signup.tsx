@@ -4,17 +4,17 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { ActionType } from 'typesafe-actions';
 
-import { signupAction } from '../../store/auth/actions';
+import * as actions from '../../store/auth/actions';
 
 const dispatchProps = {
-    signup: signupAction.request
+    signup: actions.signup
 }
 
 // https://codesandbox.io/s/github/piotrwitek/typesafe-actions/tree/master/codesandbox
 
 class Signup extends Component<InjectedFormProps & typeof dispatchProps> {
 
-    onSubmit = (formProps: any) => {
+    onSubmit = (formProps) => {
         this.props.signup(formProps);
         debugger;
         console.log('');

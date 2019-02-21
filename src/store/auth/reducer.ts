@@ -2,6 +2,7 @@ import { ActionType, getType, StateType } from 'typesafe-actions';
 import { AuthState } from "./initialState";
 
 import * as auth from './actions';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
 export type AuthActions = ActionType<typeof auth>;
 
 export const initState: AuthState = {
@@ -9,9 +10,9 @@ export const initState: AuthState = {
     errorMessage: ''
 }
 
-export const authReducer = (state = initState, action: AuthActions) => {
+export const authReducer = (state = initState, action) => {
     switch (action.type) {
-        case getType(auth.signupAction.request):
+        case auth.AUTH_USER:
             return state;
         // return Object.assign({}, state, {
         //     authenticated: action.payload.email
