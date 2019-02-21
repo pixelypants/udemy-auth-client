@@ -12,6 +12,7 @@ import App from "./components/App";
 import Welcome from "./components/Welcome";
 import Signup from "./components/auth/Signup";
 import Feature from "./components/Feature";
+import Signout from "./components/auth/Signout";
 
 const auth: AuthState = {
     authenticated: localStorage.getItem('token'),
@@ -33,7 +34,7 @@ ReactDOM.render(
                 <Route path="/" exact component={Welcome} />
                 <Route path="/signup" exact component={Signup as any} />
                 <Route path="/feature" exact component={Feature} />
-
+                <Route path="/signout" exact component={Signout} />
             </App>
         </BrowserRouter>
     </Provider>,

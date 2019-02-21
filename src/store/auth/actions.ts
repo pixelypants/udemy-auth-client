@@ -17,4 +17,11 @@ export const signup = (props: SignupFormProps, callback) => async dispatch => {
     }
 }
 
+export const signout = () => {
+    localStorage.removeItem('token');
 
+    return {
+        type: AUTH_USER,
+        payload: ''
+    }
+}
