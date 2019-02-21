@@ -1,4 +1,4 @@
-export interface AuthState {
-    authenticated: string,
+export default interface AuthState {
+    authenticated: string | null,
     errorMessage: string
 }

@@ -1,5 +1,5 @@
 import { ActionType, getType, StateType } from 'typesafe-actions';
-import { AuthState } from "./initialState";
+import AuthState from "./initialState";
 import { AUTH_USER, AUTH_ERROR } from './actions';
 
 export const initState: AuthState = {

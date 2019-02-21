@@ -3,17 +3,27 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, withRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from "./store/index";
 import thunk from "redux-thunk";
+import AuthState from "./store/auth/initialState";
 
 import App from "./components/App";
 import Welcome from "./components/Welcome";
 import Signup from "./components/auth/Signup";
+import Feature from "./components/Feature";
+
+const auth: AuthState = {
+    authenticated: localStorage.getItem('token'),
+    errorMessage: ''
+}
 
 const store = createStore(
     reducers,
-    {},
-    applyMiddleware(thunk)
+    { auth: auth as any },
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
 );
 
 ReactDOM.render(
@@ -22,6 +32,8 @@ ReactDOM.render(
             <App>
                 <Route path="/" exact component={Welcome} />
                 <Route path="/signup" exact component={Signup as any} />
+                <Route path="/feature" exact component={Feature} />
+
             </App>
         </BrowserRouter>
     </Provider>,
